@@ -1,0 +1,28 @@
+<div class="account-profile">
+
+  <div class="side-menu">
+    <p class="non-active">
+      <%= link_to "アカウント", :users %>
+    </p>
+    <p class="active">
+      <%= link_to "プロフィール", :profiles %>
+    </p>
+  </div>
+  <% if user_signed_in? %>
+    <div class="profile_list">
+      <% @profiles.each do |profile| %>
+      <div>
+      <%= label :profile_name,"ユーザー名" %>
+      <%= profile.profile_name %>
+      </div>
+      <div>
+      <%= label :self_introduction,"自己紹介" %>
+      <%= profile.self_introduction %>
+      </div>
+      <%= label :profile_image,"ユーザー写真" %>
+      <%= image_tag profile.profile_image :size => '15x15' if profile.profile_image.present?%>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
