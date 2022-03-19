@@ -1,2 +1,24 @@
-<h1>Profiles#new</h1>
-<p>Find me in app/views/profiles/new.html.erb</p>
+<div class="section-title">
+  ユーザープロフィール
+</div>
+
+<% if user_signed_in? %>
+
+  <div class="profile_list">
+    <%= form_with model: @profile do |f|%>
+    <div>
+    <%= f.label :profile_name,"ユーザー名" %>
+    <%= f.text_field :profile_name %>
+    </div>
+    <div>
+    <%= f.label :self_introduction,"自己紹介文" %>
+    <%= f.text_area :self_introduction %>
+    </div>
+    <div>
+    <%= f.label :self_introduction,"ユーザーアイコン" %>
+    <%= f.file_field :profile_image %>
+    </div>
+    <p><%= f.submit "登録する"%></p>
+    <% end %>
+  </div>
+<% end %>

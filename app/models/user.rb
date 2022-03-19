@@ -6,4 +6,5 @@ class User < ApplicationRecord
     has_one_attached :user_image
     has_many :rooms, dependent: :destroy
     has_many :reservations, dependent: :destroy
+    has_one :profile
 end

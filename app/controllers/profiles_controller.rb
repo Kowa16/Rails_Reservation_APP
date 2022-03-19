@@ -1,4 +1,9 @@
 class ProfilesController < ApplicationController
+
+  def after_sign_up_path_for(resource)
+      profiles_new_path
+  end
+
   def index
    @profiles = Profile.all
   end
@@ -8,10 +13,10 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(room_params)
+    @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
     if @profile.save
-      redirect_to :profiles
+      redirect_to :root
     else
       render :new
     end
@@ -22,15 +27,26 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @profile = Profile.find(params[:id])
+    # profile_id = current_user.id
+    @profile = Profile.find(id_params)
+
   end
 
   def update
     @profile = Profile.find(params[:id])
-    if @profile.update(room_params)
+    if @profile.update(profile_params)
       redirect_to room_path(@profile), notice: "更新しました。"
     else
       render :edit
     end
+  end
+
+  private
+  def profile_params
+    params.require(:profile).permit(:profile_name, :self_introduction)
+  end
+
+  def id_params
+    params.require(:profile).permit(:profile_id)
   end
 end

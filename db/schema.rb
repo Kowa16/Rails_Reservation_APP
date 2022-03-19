@@ -42,10 +42,12 @@ ActiveRecord::Schema.define(version: 2022_03_12_074517) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "profile_id"
     t.string "profile_name"
     t.string "self_introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -78,10 +80,9 @@ ActiveRecord::Schema.define(version: 2022_03_12_074517) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "profiles", "users"
 end
