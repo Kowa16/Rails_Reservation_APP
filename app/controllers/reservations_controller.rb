@@ -1,6 +1,7 @@
 class ReservationsController < ApplicationController
   def index
-    @reservations = Reservation.all
+    @user = current_user
+    @reservation = Reservation.find(current_user.id)
   end
 
   def new
@@ -17,6 +18,11 @@ class ReservationsController < ApplicationController
       render :new, alert: "予約されませんでした。"
     end
   end
+
+  # def show
+  #   @user = current_user
+  #   @reservation = Reservation.find(params[:id])
+  # end
 
   def destroy
     @reservation = Reservation.find(params[:id])

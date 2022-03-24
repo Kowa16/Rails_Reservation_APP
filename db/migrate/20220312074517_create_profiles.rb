@@ -12,8 +12,7 @@ class CreateProfiles < ActiveRecord::Migration[6.1]
 
 
     create_table :profiles do |t|
-      t.belongs_to :user, foreign_key: true
-      t.integer :profile_id
+      t.belongs_to :user
       t.string :profile_name
       t.string :self_introduction
       t.timestamps
