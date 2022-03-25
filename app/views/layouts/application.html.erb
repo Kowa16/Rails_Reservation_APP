@@ -40,7 +40,7 @@
           <%= link_to "ルーム登録", new_room_path, class:"header-buttom" %>
         </p>
         <p class="control">
-          <%= link_to "予約一覧", :reservations, class:"header-buttom" %>
+          <%= link_to "予約一覧", reservation_path(current_user.id), method: :get , class:"header-buttom" %>
         </p>
         <p class="control">
           <%= link_to "マイページ", edit_profile_path(current_user.id), class:"header-buttom" %>

@@ -13,25 +13,23 @@
         <th>予約確定日時</th>
         <th>削除</th>
       </tr>
-  　</thead>
+    </thead>
   　<tbody>
-  　　<div class="reservation-list">
-      　<tr>
-    　　　　<% @reservations.each do |reservation| %>
-          <td><%= reservation.room.room_name %></td>
-      　　<td><%= reservation.start_day %></td>
-      　　<td><%= reservation.end_day %></td>
-      　　<td><%= reservation.people %>人</td>
-      　　<td>¥<%= reservation.total_price %></td>
-      　　<td><%= reservation.created_at.to_s(:datetime_jp) %></td>
-      　　<% if reservation.user_id == current_user.id %>
-      　 　   <td><%= link_to "削除", reservation , method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
-      　　<% else %>
-      　  　  <td><%= "-" %></td>
-      　　<% end %>
-   　　　</tr>　
-   　　　　　<% end %>
-  　　</div>
-   　</tbody>
+      <div class="reservation-list">
+        <tr>
+          <% @reservation.each do |reservation| %>
+          <% if reservation.user_id == current_user.id %>
+            <td><%= reservation.room.room_name %></td>
+            <td><%= reservation.start_day %></td>
+            <td><%= reservation.end_day %></td>
+            <td><%= reservation.people %>人</td>
+            <td>¥<%= reservation.total_price %></td>
+            <td><%= reservation.created_at.to_s(:datetime_jp) %></td>
+            <td><%= link_to "削除", reservation , method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+          <% end %>
+        </tr>　
+   　　　　<% end %>
+      </div>
+    </tbody>
   </table>
 </article>
